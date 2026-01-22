@@ -81,4 +81,21 @@ h1 {
   transition: 0.6s;
 }
 
+/* ONLY when chaotic mood is active */
+
+body.chaotic {
+  color: white;
+}
+
+body.chaotic .core {
+  background: black;
+}
+
+body.chaotic h1,
+body.chaotic .subtitle,
+body.chaotic .mood-text {
+  color: white;
+}
+
+
 
