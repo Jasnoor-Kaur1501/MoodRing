@@ -2,6 +2,19 @@ const buttons = document.querySelectorAll(".moods button");
 const ring = document.querySelector(".ring");
 const text = document.querySelector(".mood-text");
 const body = document.body;
+const buttons = document.querySelectorAll(".moods button");
+
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const mood = btn.innerText.toLowerCase();
+
+    document.body.classList.remove("chaotic"); // reset
+
+    if (mood === "chaotic") {
+      document.body.classList.add("chaotic");
+    }
+  });
+});
 
 const moods = {
   calm: {
