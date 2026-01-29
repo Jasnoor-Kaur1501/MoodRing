@@ -76,6 +76,8 @@ window.addEventListener("touchend", stopHold);
 function startHold() {
   if (!currentMood) return;
 
+  text.textContent = "intensity rising…";   // ✅ ADD THIS LINE
+
   holdInterval = setInterval(() => {
     intensity = Math.min(intensity + 0.02, 1.6);
     ring.style.transform = `scale(${intensity})`;
