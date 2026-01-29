@@ -80,7 +80,7 @@ function startHold() {
 
   holdInterval = setInterval(() => {
     intensity = Math.min(intensity + 0.05, 1.8);
-    ring.style.transform = `scale(${intensity})`;
+    ring.style.transform = `scale(${intensity}) rotate(${intensity * 2}deg)`;
   }, 30);
 }
 
