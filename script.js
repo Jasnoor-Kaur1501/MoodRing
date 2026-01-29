@@ -64,3 +64,25 @@ buttons.forEach(btn => {
 /* Restore last mood */
 const savedMood = localStorage.getItem("moodring-mood");
 if (savedMood) applyMood(savedMood);
+
+let holdInterval = null;
+
+ring.addEventListener("mousedown", startHold);
+ring.addEventListener("touchstart", startHold);
+
+window.addEventListener("mouseup", stopHold);
+window.addEventListener("touchend", stopHold);
+
+function startHold() {
+  if (!currentMood) return;
+
+  holdInterval = setInterval(() => {
+    intensity = Math.min(intensity + 0.02, 1.6);
+    ring.style.transform = `scale(${intensity})`;
+  }, 30);
+}
+
+function stopHold() {
+  clearInterval(holdInterval);
+}
+
