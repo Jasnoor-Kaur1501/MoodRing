@@ -107,6 +107,13 @@ body.chaotic .mood-text {
   animation: breathe 6s ease-in-out infinite;
 }
 
+body.chaotic .ring {
+  animation: breathe 2s ease-in-out infinite, shake 0.15s infinite alternate;
+}
 
+@keyframes shake {
+  from { transform: translateX(-2px) rotate(-1deg); }
+  to { transform: translateX(2px) rotate(1deg); }
+}
 
 
