@@ -38,10 +38,25 @@ const moods = {
 
 buttons.forEach(btn => {
   btn.addEventListener("click", () => {
-    const mood = moods[btn.dataset.mood];
+    const key = btn.dataset.mood;
+    const mood = moods[key];
+
+    // reset chaotic mode every time
+    body.classList.remove("chaotic");
 
     body.style.background = mood.bg;
     ring.style.background = mood.ring;
     text.textContent = mood.text;
+
+    // ONLY chaotic activates special mode
+    if (key === "chaotic") {
+      body.classList.add("chaotic");
+    }
+
+    // subtle pulse so it feels alive
+    ring.animate(
+      [{ transform: "scale(1)" }, { transform: "scale(1.05)" }, { transform: "scale(1)" }],
+      { duration: 600, easing: "ease-out" }
+    );
   });
 });
