@@ -79,7 +79,7 @@ function startHold() {
   text.textContent = "intensity rising…";   // ✅ ADD THIS LINE
 
   holdInterval = setInterval(() => {
-    intensity = Math.min(intensity + 0.02, 1.6);
+    intensity = Math.min(intensity + 0.05, 1.8);
     ring.style.transform = `scale(${intensity})`;
   }, 30);
 }
