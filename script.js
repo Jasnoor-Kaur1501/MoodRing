@@ -3,6 +3,9 @@ const ring = document.querySelector(".ring");
 const text = document.querySelector(".mood-text");
 const body = document.body;
 
+let currentMood = null;
+let intensity = 1;
+
 const moods = {
   calm: {
     bg: "radial-gradient(circle at top, #dff3ff, #c7e9ff)",
@@ -36,27 +39,28 @@ const moods = {
   }
 };
 
+function applyMood(name) {
+  const mood = moods[name];
+  if (!mood) return;
+
+  currentMood = name;
+  intensity = 1;
+
+  body.className = name === "chaotic" ? "chaotic" : "";
+  body.style.background = mood.bg;
+  ring.style.background = mood.ring;
+  ring.style.transform = "scale(1)";
+  text.textContent = mood.text;
+
+  localStorage.setItem("moodring-mood", name);
+}
+
 buttons.forEach(btn => {
   btn.addEventListener("click", () => {
-    const key = btn.dataset.mood;
-    const mood = moods[key];
-
-    // reset chaotic mode every time
-    body.classList.remove("chaotic");
-
-    body.style.background = mood.bg;
-    ring.style.background = mood.ring;
-    text.textContent = mood.text;
-
-    // ONLY chaotic activates special mode
-    if (key === "chaotic") {
-      body.classList.add("chaotic");
-    }
-
-    // subtle pulse so it feels alive
-    ring.animate(
-      [{ transform: "scale(1)" }, { transform: "scale(1.05)" }, { transform: "scale(1)" }],
-      { duration: 600, easing: "ease-out" }
-    );
+    applyMood(btn.dataset.mood);
   });
 });
+
+/* Restore last mood */
+const savedMood = localStorage.getItem("moodring-mood");
+if (savedMood) applyMood(savedMood);
