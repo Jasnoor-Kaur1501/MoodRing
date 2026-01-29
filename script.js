@@ -86,5 +86,9 @@ function startHold() {
 
 function stopHold() {
   clearInterval(holdInterval);
+
+  if (currentMood) {
+    text.textContent = moods[currentMood].text;   // ✅ ADD THIS
+  }
 }
 
